@@ -46,3 +46,9 @@
 ## License:
 
 [![License](https://img.shields.io/badge/License-MIT%20License-Green)](http://choosealicense.com/licenses/mit/)
+
+https://stackoverflow.com/questions/18022365/mongoose-validate-email-syntax
+
+HW: 18.25
+moment formatting: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+

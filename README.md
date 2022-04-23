@@ -52,3 +52,6 @@ https://stackoverflow.com/questions/18022365/mongoose-validate-email-syntax
 HW: 18.25
 moment formatting: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
 
+
+status codes:
+https://en.wikipedia.org/wiki/List_of_HTTP_status_codes

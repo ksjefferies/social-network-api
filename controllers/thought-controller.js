@@ -1,26 +1,54 @@
 const {Thoughts, Users} = require('../models');
 
 const thoughtController = {
-    getAllThoughts(req, res) {
+    async getAllThoughts(req, res) {
+        try {
 
+        } catch(err) {
+
+        };
     },
-    getThoughtById({params}, res) {
+    async getThoughtById({params}, res) {
+        try {
 
+        } catch(err) {
+
+        };
     },
-    createThought({params, body}, res) {
+    async createThought({params, body}, res) {
+        try {
 
+        } catch(err) {
+
+        };
     },
-    updateThought({params}, res) {
+    async updateThought({params}, res) {
+        try {
 
+        } catch(err) {
+
+        };
     },
-    deleteThought({params}, res) {
+    async deleteThought({params}, res) {
+        try {
 
+        } catch(err) {
+
+        };
     },
-    createReaction({params, body}, res) {
+    async createReaction({params, body}, res) {
+        try {
 
+        } catch(err) {
+
+        };
     },
-    deleteReaction({params}, res) {
+    async deleteReaction({params}, res) {
+        try {
 
+        } catch(err) {
+
+        };
     }
 };
 

@@ -1,4 +1,3 @@
-const { propfind } = require('../../tech-blog/controllers/home-routes');
 const Users = require('../models/Users');
 
 const userController = {
@@ -13,6 +12,7 @@ const userController = {
             res.status(500).json({ message: 'Internal Server Error' });
         }
     },
+
     async getUserId({ params }, res) {
         try {
             const user = await Users.findOne({ _id: params.id })
@@ -29,6 +29,7 @@ const userController = {
             res.status(400).json({ message: 'Bad Request' });
         };
     },
+
     async createUser({ body }, res) {
         try {
             const user = new Users.create(body);
@@ -37,6 +38,7 @@ const userController = {
             res.status(400).json(err)
         };
     },
+
     async updateUser({ params, body }, res) {
         try {
             const user = await Users.findOneAndUpdate({ _id: params.id }, body, { runValidators: true, new: true })
@@ -50,6 +52,7 @@ const userController = {
             res.json(err)
         };
     },
+
     async deleteUser({ params }, res) {
         try {
             const user = await Users.findOneAndDelete({ _id: params.id })
@@ -63,9 +66,10 @@ const userController = {
             res.status(400).json(err);
         };
     },
+
     async addFriendToUser({ params }, res) {
         try {
-            const user = await Users.findOneAndUpdate({ _id: params.id }, { $push: { friends: params.friendId } }, { new: true })
+            const user = await Users.findOneAndUpdate({ _id: params.id }, { '$push': { friends: params.friendId } }, { new: true })
                 .populate({ path: 'friends', select: ('-__v') })
                 .select('-__v')
 
@@ -78,6 +82,7 @@ const userController = {
             res.json(err);
         };
     },
+
     async deleteFriendFromUser({ params }, res) {
         try {
             const user = await Users.findOneAndUpdate({ _id: params.id }, { $pull: { friends: params.friendId } }, { new: true })

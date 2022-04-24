@@ -4,6 +4,7 @@
 ## Table of Content
 
 - [Description](#description)
+- [Objectives](#objectives)
 - [Media](#media)
 - [GitHub Repository](#github-repository)
 - [Authors](#authors)  
@@ -14,12 +15,37 @@
 -------
 ## Description:  
 
-The task was to build an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list.  The routes will all be testing via Insomnia.
+The Social-Network-API is a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list.  The routes will all be tested via Insomnia.  The route test import file is located within the repo, under 'Insomnia-Routes.json'.
+
+------
+## Objectives:
+```
+- GET: 
+    * All Users
+    * User by ID
+    * All Thoughts
+    * Thought by ID
+- POST:
+    * Create User
+    * Create Thought
+    * Create reaction
+    * Create Friend (Add friend to users list)
+- PUT:
+    * Update User
+    * Update Thought
+- DELETE:
+    * Delete User
+    * Delete Thought
+    * Delete Reaction
+    * Delete Friend (Remove friend from users list)
+- BONUS:
+    * When User is deleted, the associated Thoughts are also deleted.
+```
 
 ------
 ## Media:
 
-![Image of Social Network](./public/images/sidequest-main.jpg)
+- [Video of all routes being tested in Insomnia](https://drive.google.com/file/d/1u10o8Mgsn-1FTEjgULUJqgj5CXI5wqv6/view?usp=sharing)
 
 ## Github Repository:
 

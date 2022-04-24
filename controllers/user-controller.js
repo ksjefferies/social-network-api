@@ -1,4 +1,4 @@
-const {Users} = require('../models');
+const { Users, Thoughts } = require('../models');
 
 const userController = {
     async getAllUsers(req, res) {
@@ -7,6 +7,7 @@ const userController = {
                 .populate({ path: 'thoughts', select: '-__v' })
                 .populate({ path: 'friends', select: '-__v' })
                 .select('-__v')
+
             res.json(user)
         } catch (err) {
             res.status(500).json({ message: 'Internal Server Error' });
@@ -33,6 +34,7 @@ const userController = {
     async createUser({ body }, res) {
         try {
             const user = await Users.create(body);
+
             res.json(user);
         } catch (err) {
             res.status(400).json(err)
@@ -56,6 +58,7 @@ const userController = {
     async deleteUser({ params }, res) {
         try {
             const user = await Users.findOneAndDelete({ _id: params.id })
+            await Promise.all(user.thoughts.map((thought) => Thoughts.findOneAndDelete({ _id: thought })))
 
             if (!user) {
                 res.status(404).json({ message: 'No users found with this ID.' })
@@ -67,7 +70,7 @@ const userController = {
         };
     },
 
-    async addFriendToUser({ body,params}, res) {
+    async addFriendToUser({ body, params }, res) {
         try {
             const user = await Users.findOneAndUpdate({ _id: params.id }, { $push: { friends: body.id } }, { new: true })
                 .populate({ path: 'friends', select: ('-__v') })

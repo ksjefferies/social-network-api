@@ -15,14 +15,16 @@ const thoughtController = {
 
     async getThoughtById({ params }, res) {
         try {
-            const thought = await Thoughts.findOne({ _id: params.id })
+            const thought = await Thoughts.findOne({ _id: params.thoughtId })
                 .populate({ path: 'reactions', select: '-__v' })
-            select('-__v')
+                .select('-__v')
 
             if (!thought) {
                 res.status(404).json({ message: 'No thought found.' });
-            };
+                return
+            }
             res.json(thought);
+
         } catch (err) {
             res.status(400).json(err);
         };
@@ -31,8 +33,8 @@ const thoughtController = {
     async createThought({ params, body }, res) {
         try {
             const thought = await Thoughts.create(body)
-
             const dbThoughtsData = await Users.findOneAndUpdate({ _id: params.userId }, { $push: { thoughts: thought._id } }, { new: true })
+
             if (!dbThoughtsData) {
                 res.status(404).json({ message: 'No thought with that ID.' })
                 return;
@@ -45,7 +47,7 @@ const thoughtController = {
 
     async updateThought({ params, body }, res) {
         try {
-            const thought = await Thoughts.findOneAndUpdate({ _id: params.id }, body, { runValidators: true, new: true })
+            const thought = await Thoughts.findOneAndUpdate({ _id: params.thoughtId }, body, { runValidators: true, new: true })
                 .populate({ path: 'reactions', select: '-__v' })
                 .select('-__v')
 
@@ -61,7 +63,7 @@ const thoughtController = {
 
     async deleteThought({ params }, res) {
         try {
-            const thought = Thoughts.findOneAndDelete({ _id: params.id })
+            const thought = await Thoughts.findOneAndDelete({ _id: params.thoughtId })
 
             if (!thought) {
                 res.status(404).json({ message: 'No thought found with this ID.' })
@@ -93,6 +95,7 @@ const thoughtController = {
         try {
             const thought = await Thoughts.findOneAndUpdate({ _id: params.thoughtId }, { $pull: { reactions: { reactionId: params.reactionId } } }, { new: true }
             )
+
             if (!thought) {
                 res.status(404).json({ message: 'Invalid Request' })
                 return;

@@ -32,7 +32,7 @@ const thoughtController = {
         try {
             const thought = await Thoughts.create(body)
 
-            const dbThoughtsData = await Users.findOneAndUpdate({ _id: params.userID }, { "$push": { thoughts: thought._id } }, { new: true })
+            const dbThoughtsData = await Users.findOneAndUpdate({ _id: params.userId }, { $push: { thoughts: thought._id } }, { new: true })
             if (!dbThoughtsData) {
                 res.status(404).json({ message: 'No thought with that ID.' })
                 return;
@@ -75,7 +75,7 @@ const thoughtController = {
 
     async createReaction({ params, body }, res) {
         try {
-            const thought = await Thoughts.findOneAndUpdate({ _id: params.thoughtId }, { '$push': { reactions: body } }, { runValidators: true, new: true })
+            const thought = await Thoughts.findOneAndUpdate({ _id: params.thoughtId }, { $push: { reactions: body } }, { runValidators: true, new: true })
                 .populate({ path: 'reactions', select: '-__v' })
                 .select('-__v')
 
@@ -91,14 +91,10 @@ const thoughtController = {
 
     async deleteReaction({ params }, res) {
         try {
-            const thought = await Thoughts.findOneAndUpdate
-                (
-                    { _id: params.thoughtId },
-                    { '$pull': { reactions: { reactionId: params.reactionId } } },
-                    { new: true }
-                )
+            const thought = await Thoughts.findOneAndUpdate({ _id: params.thoughtId }, { $pull: { reactions: { reactionId: params.reactionId } } }, { new: true }
+            )
             if (!thought) {
-                res.status(404).json({ message: 'No thought with that ID.' })
+                res.status(404).json({ message: 'Invalid Request' })
                 return;
             }
             res.json(thought);

@@ -11,8 +11,7 @@ const {
 } = require('../../controllers/thought-controller');
 
 // /api/thoughts
-router.route('/')
-    .get(getAllThoughts);
+router.route('/').get(getAllThoughts);
 
 // /api/thoughts/:id
 router.route('/:id').get(getThoughtById).put(updateThought).delete(deleteThought);

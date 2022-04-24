@@ -55,3 +55,54 @@ moment formatting: https://momentjscom.readthedocs.io/en/latest/moment/04-displa
 
 status codes:
 https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+
+
+
+
+Works:
+Friends:
+    Add Friend
+
+
+
+Users:
+Create User(all)
+find user by ID
+delete user
+update user
+
+
+
+Thoughts:
+Create Thought
+
+
+Reactions:
+Create
+Remove
+
+
+
+
+
+
+
+
+
+
+
+Incomplete:
+
+Friends:
+   
+
+
+Users:
+
+
+
+Thoughts:
+
+
+
+Reactions:

@@ -1,19 +1,23 @@
+// Require Models: (Thoughts, Users)
 const { Users, Thoughts } = require('../models');
 
+// Setup user controller to contain all user functions
 const userController = {
+
+    // Get all users
     async getAllUsers(req, res) {
         try {
             const user = await Users.find({})
                 .populate({ path: 'thoughts', select: '-__v' })
                 .populate({ path: 'friends', select: '-__v' })
                 .select('-__v')
-
             res.json(user)
         } catch (err) {
             res.status(500).json({ message: 'Internal Server Error' });
         }
     },
 
+    // Get a single user
     async getUserId({ params }, res) {
         try {
             const user = await Users.findOne({ _id: params.id })
@@ -31,16 +35,17 @@ const userController = {
         };
     },
 
+    // Create a new user
     async createUser({ body }, res) {
         try {
             const user = await Users.create(body);
-
             res.json(user);
         } catch (err) {
             res.status(400).json(err)
         };
     },
 
+    // Update a user
     async updateUser({ params, body }, res) {
         try {
             const user = await Users.findOneAndUpdate({ _id: params.id }, body, { runValidators: true, new: true })
@@ -55,6 +60,7 @@ const userController = {
         };
     },
 
+    // Delete a user and all associated thoughts
     async deleteUser({ params }, res) {
         try {
             const user = await Users.findOneAndDelete({ _id: params.id })
@@ -70,6 +76,7 @@ const userController = {
         };
     },
 
+    // Add a friend to a user
     async addFriendToUser({ body, params }, res) {
         try {
             const user = await Users.findOneAndUpdate({ _id: params.id }, { $push: { friends: body.id } }, { new: true })
@@ -86,6 +93,7 @@ const userController = {
         };
     },
 
+    // Delete a friend from a user
     async deleteFriendFromUser({ params }, res) {
         try {
             const user = await Users.findOneAndUpdate({ _id: params.id }, { $pull: { friends: params.friendId } }, { new: true })

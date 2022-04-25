@@ -1,18 +1,22 @@
+// Require Models: (Thoughts, Users)
 const { Thoughts, Users } = require('../models');
 
+// Setup thoughtController to contain all thought functions
 const thoughtController = {
+
+    // Get all thoughts
     async getAllThoughts(req, res) {
         try {
             const thought = await Thoughts.find({})
                 .populate({ path: 'reactions', select: '-__v' })
                 .select('-__v')
-
             res.json(thought);
         } catch (err) {
             res.status(500).json(err);
         };
     },
 
+    // Get thoughts of single user
     async getThoughtById({ params }, res) {
         try {
             const thought = await Thoughts.findOne({ _id: params.thoughtId })
@@ -24,12 +28,12 @@ const thoughtController = {
                 return
             }
             res.json(thought);
-
         } catch (err) {
             res.status(400).json(err);
         };
     },
 
+    // Create new thought
     async createThought({ params, body }, res) {
         try {
             const thought = await Thoughts.create(body)
@@ -45,6 +49,7 @@ const thoughtController = {
         };
     },
 
+    // Update thought
     async updateThought({ params, body }, res) {
         try {
             const thought = await Thoughts.findOneAndUpdate({ _id: params.thoughtId }, body, { runValidators: true, new: true })
@@ -61,6 +66,7 @@ const thoughtController = {
         };
     },
 
+    // Delete thought
     async deleteThought({ params }, res) {
         try {
             const thought = await Thoughts.findOneAndDelete({ _id: params.thoughtId })
@@ -75,6 +81,7 @@ const thoughtController = {
         };
     },
 
+    // Create new reaction
     async createReaction({ params, body }, res) {
         try {
             const thought = await Thoughts.findOneAndUpdate({ _id: params.thoughtId }, { $push: { reactions: body } }, { runValidators: true, new: true })
@@ -91,10 +98,10 @@ const thoughtController = {
         };
     },
 
+    // Delete reaction
     async deleteReaction({ params }, res) {
         try {
-            const thought = await Thoughts.findOneAndUpdate({ _id: params.thoughtId }, { $pull: { reactions: { reactionId: params.reactionId } } }, { new: true }
-            )
+            const thought = await Thoughts.findOneAndUpdate({ _id: params.thoughtId }, { $pull: { reactions: { reactionId: params.reactionId } } }, { new: true })
 
             if (!thought) {
                 res.status(404).json({ message: 'Invalid Request' })

@@ -5,6 +5,7 @@
 
 - [Description](#description)
 - [Objectives](#objectives)
+- [Usage](#usage)
 - [Media](#media)
 - [GitHub Repository](#github-repository)
 - [Authors](#authors)  
@@ -43,9 +44,22 @@ The Social-Network-API is a social network web application where users can share
 ```
 
 ------
+## Usage:
+
+* Clone repository from Github acccount listed below
+* Open Integrated Terminal from 'package.json
+* Run the following from the terminal prompt
+    - 'npm install'
+    - 'node server.js'
+* Run Insomnia 
+    - Import test routes from file: 'Insomnia_Routes.json' into Insomnia
+
+------
 ## Media:
 
-- [Video of all routes being tested in Insomnia](https://drive.google.com/file/d/1u10o8Mgsn-1FTEjgULUJqgj5CXI5wqv6/view?usp=sharing)
+![Social Network: Insomnia Testing Routes](./Assets/images/social-network.jpg)
+
+[Video of all routes being tested in Insomnia](https://drive.google.com/file/d/1u10o8Mgsn-1FTEjgULUJqgj5CXI5wqv6/view?usp=sharing)
 
 ## Github Repository:
 

@@ -1,5 +1,7 @@
+// Require Mongoose
 const { Schema, model } = require('mongoose');
 
+// Create new scheme for Users
 const UsersSchema = new Schema(
     {
         username: {
@@ -12,7 +14,7 @@ const UsersSchema = new Schema(
             type: String,
             required: true,
             unique: true,
-            match: [/^([a-zA-Z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/]
+            match: [/^([a-zA-Z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/] // Regex to validate email format
         },
         thoughts: [
             {
@@ -36,10 +38,10 @@ const UsersSchema = new Schema(
     }
 );
 
-// Create virtual property that retrieves the length of the users 'friends' array on query.
+// Create virtual property that creates/stores friend count.
 UsersSchema.virtual('friendCount').get(function () {
     return this.friends.length;
-})
+});
 
 const Users = model('Users', UsersSchema);
 

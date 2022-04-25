@@ -1,6 +1,8 @@
+// Require Mongoose and moment
 const { Schema, model, Types } = require('mongoose');
 const moment = require('moment');
 
+// Create new schema for reactions
 const ReactionsSchema = new Schema(
     {
         reactionId: {
@@ -31,6 +33,7 @@ const ReactionsSchema = new Schema(
     }
 );
 
+// Create new schema for thoughts
 const ThoughtsSchema = new Schema(
     {
         thoughtText: {
@@ -59,11 +62,12 @@ const ThoughtsSchema = new Schema(
     }
 );
 
-// create virtual property that gets the length of thoughts reactions array
+// create virtual property to store count of reactions 
 ThoughtsSchema.virtual('reactionCount').get(function () {
     return this.reactions.length;
 })
 
 const Thoughts = model('Thoughts', ThoughtsSchema);
 
+// Export module: Thoughts
 module.exports = Thoughts;

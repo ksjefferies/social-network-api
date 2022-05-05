@@ -1,6 +1,6 @@
 # social-network-api
-----
 
+----
 ## Table of Content
 
 - [Description](#description)
@@ -20,6 +20,7 @@ The Social-Network-API is a social network web application where users can share
 
 ------
 ## Objectives:
+
 ```
 - GET: 
     * All Users
@@ -46,13 +47,13 @@ The Social-Network-API is a social network web application where users can share
 ------
 ## Usage:
 
-* Clone repository from Github acccount listed below
-* Open Integrated Terminal from 'package.json
-* Run the following from the terminal prompt
-    - 'npm install'
-    - 'node server.js'
-* Run Insomnia 
-    - Import test routes from file: 'Insomnia_Routes.json' into Insomnia
+- lone repository from Github acccount listed below
+- Open Integrated Terminal from 'package.json
+- Run the following from the terminal prompt
+    * 'npm install'
+    * 'node server.js'
+- Run Insomnia 
+    * Import test routes from file: 'Insomnia_Routes.json' into Insomnia
 
 ------
 ## Media:
@@ -65,7 +66,7 @@ The Social-Network-API is a social network web application where users can share
 
 - [Github Repository for Social Network API](https://github.com/ksjefferies/social-network-api)
 
-## Authors:
+## Author:
 
 - [Kelly Jefferies](https://github.com/ksjefferies)
 
@@ -80,9 +81,10 @@ The Social-Network-API is a social network web application where users can share
 
 ## Technologies Used:
 
-- [Express.js](https://expressjs.com/)
-- [Moment.js](https://momentjs.com/)
-- [Mongoosejs](https://mongoosejs.com/docs/)
+![javascript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![mongo](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![node](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
 
 ## License:
 
